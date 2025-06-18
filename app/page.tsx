@@ -138,7 +138,7 @@ const TimelineItem = ({
   const motionStyle = isFirst ? { opacity: 1, y: 0 } : { opacity, y };
 
   return (
-    <motion.div className="relative py-1" style={motionStyle}>
+    <motion.div className="relative py-1 pl-2 md:pl-0" style={motionStyle}>
       <div className="absolute -right-6 top-4 h-[2px] w-4 -translate-y-1/2 bg-muted" />
       <motion.div
         className="absolute -right-6 top-4 h-[2px] w-4 -translate-y-1/2 bg-primary"
@@ -229,36 +229,38 @@ export default function PortfolioPage() {
             {RESUME_DATA.name}
           </h1>
         </div>
-        <div className="flex gap-2 justify-center md:justify-start">
-          <a
-            href={`mailto:${RESUME_DATA.contact.email}`}
-            className="p-1 hover:bg-white hover:text-zinc-500 cursor-none"
-          >
-            <Mail className="h-4 w-4" />
-          </a>
-          {RESUME_DATA.contact.social.map((social) => (
+        <div className="flex justify-between px-2 items-center w-full md:flex-col md:gap-2">
+          <div className="flex gap-2 justify-center md:justify-start">
             <a
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${RESUME_DATA.contact.email}`}
               className="p-1 hover:bg-white hover:text-zinc-500 cursor-none"
             >
-              <social.icon className="h-4 w-4" />
+              <Mail className="h-4 w-4" />
             </a>
-          ))}
+            {RESUME_DATA.contact.social.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-1 hover:bg-white hover:text-zinc-500 cursor-none"
+              >
+                <social.icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+          <p className="text-sm text-muted-foreground tracking-wider font-light">
+            {RESUME_DATA.title}
+          </p>
         </div>
-        <p className="text-sm text-muted-foreground tracking-wider font-light">
-          {RESUME_DATA.title}
-        </p>
       </section>
 
-      <section className="max-w-4xl">
+      <section className="w-full px-2 md:max-w-4xl md:px-0">
         <p className="text-zinc-600">{RESUME_DATA.about}</p>
       </section>
 
       <section ref={timelineRef} className="relative mt-8 max-w-4xl">
-        <div className="absolute right-2 top-0 pt-4 pb-48 h-full">
+        <div className="absolute right-2 top-0 pt-4 pb-68 md:pb-48 h-full">
           <div className="h-full w-0.5 translate-x-1/2 bg-muted relative">
             <motion.div
               className="absolute top-0 left-0 h-full w-0.5 translate-x-1/2 origin-top bg-primary"
@@ -280,7 +282,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="max-w-4xl">
+      <section className="w-full px-2 md:max-w-4xl md:px-0">
         <p className="text-zinc-600">
           {
             "Some other things to know about me are that New York City is my favorite place in the world, even if I'm going to live at the beach for a year, that I am a proud California Golden Bear, my main driver in this kind of work is getting to work on problems that include anticipating how users think and behave, and that this is my first swing at a personal website in about 9 years."
@@ -298,10 +300,12 @@ export default function PortfolioPage() {
         </p>
       </section>
 
-      <section className="w-full mt-12">
-        <div className="max-w-4xl mx-auto">
-          <p className="text-zinc-600 text-right">
-            {"Some recent less than perfect exposures to liven up the place."}
+      <section className="w-full mt-4 md:mt-12 flex flex-col items-center">
+        <div className="w-full px-2 md:max-w-4xl md:px-0">
+          <p className="text-zinc-600 text-left md:text-right">
+            {
+              "Here's some recent, less than perfect exposures to help liven up the place."
+            }
           </p>
         </div>
         <div className="flex flex-col w-full mt-4">
