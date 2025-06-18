@@ -195,7 +195,7 @@ export function SmoothCursor({
         willChange: "transform",
       }}
       initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
+      animate={{ scale: isMoving ? 1.1 : 1 }}
       transition={{
         type: "spring",
         stiffness: 400,
