@@ -83,6 +83,7 @@ const RESUME_DATA = {
         "Anthropic API",
         "Fabric.js",
       ],
+      website: "https://www.amaro.ai",
     },
     {
       company: "Le Rock",
@@ -92,6 +93,7 @@ const RESUME_DATA = {
         "A change of pace. Pursued my interest in cocktail creation and experienced a different industry. Made syrups, juices, garnish, and drinks while supporting bartenders and serving guests. I learned to spend time on my feet, think ahead and think fast, and show up with a smile no matter what. Taking time to work here is one of the better decisions I've made.",
       ],
       tags: [],
+      website: "https://www.lerocknyc.com",
     },
     {
       company: "Somethings",
@@ -102,6 +104,7 @@ const RESUME_DATA = {
         "Being the 3rd hire, I had my first taste doing recruiting to interviewing to onboarding of other employees, and was actively involved in design, marketing, and ops strategy. It was the first time I really saw myself work in multiple areas as needed and I loved it.",
       ],
       tags: ["React Native", "Sendbird", "Zoom SDK", "AWS S3"],
+      website: "https://www.somethings.com",
     },
     {
       company: "Snackpass",
@@ -112,6 +115,7 @@ const RESUME_DATA = {
         "I worked on lots of other more traditional full-stack features after this, really launching my career doing product engineering. This stuff ranged from Time & Attendance to building v0 of a first party POS for restaurants.",
       ],
       tags: ["React Native", "Three.js", "API Integration"],
+      website: "https://www.snackpass.com",
     },
   ],
 };
@@ -146,7 +150,19 @@ const TimelineItem = ({
       />
       <div className="flex justify-between items-center">
         <h5 className={`${luckiestGuy.className}`}>
-          {exp.title} @ {exp.company}
+          {exp.title} @{" "}
+          {exp.website ? (
+            <a
+              href={exp.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-zinc-400 transition-colors duration-200 cursor-none"
+            >
+              {exp.company}
+            </a>
+          ) : (
+            exp.company
+          )}
         </h5>
         <div className="tracking-wider font-light text-muted-foreground">
           {exp.date}
@@ -233,7 +249,7 @@ export default function PortfolioPage() {
           <div className="flex gap-2 justify-center md:justify-start">
             <a
               href={`mailto:${RESUME_DATA.contact.email}`}
-              className="p-1 hover:bg-white hover:text-zinc-500 cursor-none"
+              className="p-1 hover:bg-white hover:text-zinc-400 cursor-none"
             >
               <Mail className="h-4 w-4" />
             </a>
@@ -243,7 +259,7 @@ export default function PortfolioPage() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-1 hover:bg-white hover:text-zinc-500 cursor-none"
+                className="p-1 hover:bg-white hover:text-zinc-400 cursor-none"
               >
                 <social.icon className="h-4 w-4" />
               </a>
