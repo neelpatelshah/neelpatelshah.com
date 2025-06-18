@@ -7,6 +7,7 @@ import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Image from "next/image";
+import ChatFooter from "./chat-footer";
 
 const cameraRoll = ["/3.JPG", "/1.JPG", "/4.JPG", "/2.JPG", "/5.JPG"];
 
@@ -34,7 +35,7 @@ const RESUME_DATA = {
     ],
   },
   about:
-    "I’m a full-stack engineer with an eye for good UX who can deliver fun, polished products and features on my own or with a team. I can take a vague problem and research, wireframe, build, test, and deliver, with an eye for detail while still making tradeoffs to ship fast and often.",
+    "I'm a builder with an eye for good UX who can deliver fun, polished products and features on my own or with a team. I can take a vague ideas or issues and research, wireframe, build, test, and deliver, with an eye for detail while still making tradeoffs to ship fast and often.",
   skills: [
     "TypeScript",
     "React",
@@ -226,7 +227,7 @@ export default function PortfolioPage() {
   }, []);
 
   return (
-    <main className="mx-0 max-w-screen space-y-4 md:p-0 flex flex-col items-center">
+    <main className="mx-0 max-w-screen md:p-0 flex flex-col items-center">
       <SmoothCursor />
       <section className="flex flex-col w-full items-center text-center space-y-1">
         <div
@@ -337,6 +338,7 @@ export default function PortfolioPage() {
           ))}
         </div>
       </section>
+      <ChatFooter />
     </main>
   );
 }

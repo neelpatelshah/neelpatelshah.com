@@ -80,6 +80,38 @@ const DefaultCursorSVG: FC = () => {
   );
 };
 
+const TypingCursorSVG: FC = () => (
+  <svg
+    width={28}
+    height={54}
+    viewBox="0 0 28 54"
+    fill="none"
+    style={{ scale: 0.5 }}
+  >
+    <g transform="rotate(90 14 27)">
+      <rect x="12" y="8" width="4" height="38" rx="2" fill="black" />
+      <rect
+        x="12"
+        y="8"
+        width="4"
+        height="38"
+        rx="2"
+        fill="white"
+        fillOpacity="0.2"
+      />
+      <rect
+        x="12"
+        y="8"
+        width="4"
+        height="38"
+        rx="2"
+        stroke="white"
+        strokeWidth="1.5"
+      />
+    </g>
+  </svg>
+);
+
 export function SmoothCursor({
   cursor = <DefaultCursorSVG />,
   springConfig = {
@@ -89,7 +121,9 @@ export function SmoothCursor({
     restDelta: 0.001,
   },
 }: SmoothCursorProps) {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const lastMousePos = useRef<Position>({ x: 0, y: 0 });
   const velocity = useRef<Position>({ x: 0, y: 0 });
   const lastUpdateTime = useRef(Date.now());
@@ -110,6 +144,28 @@ export function SmoothCursor({
   });
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches) {
+      setIsTouchDevice(true);
+      return;
+    }
+
+    // Detect if hovering over input/textarea
+    const handlePointerMove = (e: PointerEvent) => {
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      if (
+        el &&
+        (el.tagName === "INPUT" ||
+          el.tagName === "TEXTAREA" ||
+          (el as HTMLElement).isContentEditable)
+      ) {
+        setIsTyping(true);
+      } else {
+        setIsTyping(false);
+      }
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+
     const updateVelocity = (currentPos: Position) => {
       const currentTime = Date.now();
       const deltaTime = currentTime - lastUpdateTime.current;
@@ -180,6 +236,10 @@ export function SmoothCursor({
     };
   }, [cursorX, cursorY, rotation, scale]);
 
+  if (isTouchDevice) {
+    return null;
+  }
+
   return (
     <motion.div
       style={{
@@ -202,7 +262,7 @@ export function SmoothCursor({
         damping: 30,
       }}
     >
-      {cursor}
+      {isTyping ? <TypingCursorSVG /> : cursor}
     </motion.div>
   );
 }
