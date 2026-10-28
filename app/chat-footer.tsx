@@ -5,7 +5,7 @@ import { Send } from "lucide-react";
 import { useEffect } from "react";
 
 const ChatFooter = () => {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { input, handleInputChange, handleSubmit } = useChat();
 
   // event listener for enter key to submit
   useEffect(() => {
