@@ -157,8 +157,9 @@ const TimelineItem = ({
   totalItems: number;
   isFirst?: boolean;
 }) => {
-  const start = index / totalItems;
-  const end = (index + 1) / totalItems;
+  const offset = index === 1 ? 0.1 : 0;
+  const start = Math.max(0, index / totalItems - offset);
+  const end = Math.max(0, (index + 1) / totalItems - offset);
 
   const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
   const y = useTransform(scrollYProgress, [start, end], [20, 0]);
