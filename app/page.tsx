@@ -157,7 +157,7 @@ const TimelineItem = ({
   totalItems: number;
   isFirst?: boolean;
 }) => {
-  const offset = index === 1 ? 0.1 : 0;
+  const offset = index === 1 ? 0.2 : 0;
   const start = Math.max(0, index / totalItems - offset);
   const end = Math.max(0, (index + 1) / totalItems - offset);
 
