@@ -1,13 +1,12 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Github, Linkedin, Mail } from "lucide-react";
-import { Tilt_Warp } from "next/font/google";
+import { Github, Linkedin, Mail, Martini } from "lucide-react";
+import { Tilt_Warp, Palette_Mosaic } from "next/font/google";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Image from "next/image";
-import ChatFooter from "./chat-footer";
 
 const cameraRoll = ["/3.JPG", "/1.JPG", "/4.JPG", "/2.JPG", "/5.JPG"];
 
@@ -16,9 +15,14 @@ const luckiestGuy = Tilt_Warp({
   weight: "400",
 });
 
+const paletteMosaic = Palette_Mosaic({
+  subsets: ["latin"],
+  weight: "400",
+});
+
 const RESUME_DATA = {
   name: "Neel Patel-Shah",
-  title: "PRODUCT & FULL STACK ENGINEER",
+  title: "PRODUCT ENGINEER",
   contact: {
     email: "neelpatelshahl@gmail.com",
     social: [
@@ -34,8 +38,7 @@ const RESUME_DATA = {
       },
     ],
   },
-  about:
-    "I'm a builder with an eye for good UX who can deliver fun, polished products and features on my own or with a team. I can take a vague ideas or issues and research, wireframe, build, test, and deliver, with an eye for detail while still making tradeoffs to ship fast and often.",
+  about: "I just like making things.",
   skills: [
     "TypeScript",
     "React",
@@ -47,20 +50,39 @@ const RESUME_DATA = {
   ],
   experience: [
     {
-      company: "Somewhere Cool",
-      title: "Something Fun",
-      date: "TOMORROW",
+      company: "The Stuff I Care About",
+      title: "Doing My Best",
+      date: "PRESENT",
       description: [
-        "I'm uprooting my life and moving to LA for a year , and I'm on the lookout for an opportunity that will let me maximize this life change and keep myself growing while I work on something awesome.",
+        "I have seriously expanded on my bartending and mixology, developed a taste for film photography, and continue pushing on everything OpenEvidence.",
+        "I really just updated this so it didn't look like I was still job hunting.",
       ],
       tags: [],
+    },
+    {
+      company: "OpenEvidence",
+      title: "Software Engineer",
+      date: "AUGUST 2025",
+      description: [
+        "I came along with the team to OpenEvidence, where we have worked on everything from ads to data to analytics to product. I have been in charge of large portions of platform (and entire platforms).",
+        "We continue pushing on how to improve medicine and enable doctors to provide better care.",
+      ],
+      tags: [
+        "GCP",
+        "Django",
+        "DRF",
+        "PostgreSQL",
+        "Next.js",
+        "I mean its all coding agents now",
+      ],
+      website: "https://openevidence.com",
     },
     {
       company: "Lineup",
       title: '"Founder"',
       date: "APRIL 2025",
       description: [
-        "Just a personal project to do something fun with concerts and social behavior, two things I'm pretty into. The goal is to get people to care about music and shows for what they are instead of Instagram fodder, through social sharing and discovery. It'd also be pretty cool to build something that boosts small capacity venues and brings out some hidden gems.",
+        "A personal project to do something fun with concerts and social behavior, two things I'm pretty into. The goal is to get people to care about music and shows for what they are instead of Instagram fodder, through social sharing and discovery. It'd also be pretty cool to build something that boosts small capacity venues and brings out some hidden gems.",
       ],
       tags: ["SwiftUI", "TypeScript", "Ticketmaster API", "Web Scraping"],
     },
@@ -71,6 +93,7 @@ const RESUME_DATA = {
       description: [
         "Pivoted through a range of products, building core features on my own and with my team, whatever the situation needed. Built social, then graph based creator tools, then a GenAI powered image editor, and finally an AI powered social media marketing anayltics tool.",
         "As the 5th hire and senior-most member, I helped my team grow, focusing on build and stack decisions, problem solving, and company ops. It was my first time in that position and I hope it's not the last.",
+        "Amaro was acquired by OpenEvidence in the summer of 2025.",
       ],
       tags: [
         "Next.js",
@@ -84,7 +107,6 @@ const RESUME_DATA = {
         "Anthropic API",
         "Fabric.js",
       ],
-      website: "https://www.amaro.ai",
     },
     {
       company: "Le Rock",
@@ -103,6 +125,7 @@ const RESUME_DATA = {
       description: [
         "Built a mobile app 0-1 for chat and video calling to give mentors and teens a safe place to connect and help teens work through their problems with they can relate to, who is trained to help them without the therapy waitlists.",
         "Being the 3rd hire, I had my first taste doing recruiting to interviewing to onboarding of other employees, and was actively involved in design, marketing, and ops strategy. It was the first time I really saw myself work in multiple areas as needed and I loved it.",
+        "Somethings is trusted by teens across the country and has raised a Series A.",
       ],
       tags: ["React Native", "Sendbird", "Zoom SDK", "AWS S3"],
       website: "https://www.somethings.com",
@@ -204,7 +227,7 @@ export default function PortfolioPage() {
         const targetWidth = window.innerWidth * 1.03;
         const currentWidth = nameRef.current.scrollWidth;
         const currentFontSize = parseFloat(
-          window.getComputedStyle(nameRef.current).fontSize
+          window.getComputedStyle(nameRef.current).fontSize,
         );
 
         if (currentWidth > 0) {
@@ -265,6 +288,22 @@ export default function PortfolioPage() {
                 <social.icon className="h-4 w-4" />
               </a>
             ))}
+            <a
+              href="https://barnicolette.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1 hover:bg-white hover:text-zinc-400 cursor-none"
+            >
+              <Martini className="h-4 w-4" />
+            </a>
+            <a
+              href="https://bev.neelpatelshah.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-1 hover:bg-white hover:text-zinc-400 cursor-none flex items-center justify-center h-6 w-6 text-sm leading-none ${paletteMosaic.className}`}
+            >
+              b
+            </a>
           </div>
           <p className="text-sm text-muted-foreground tracking-wider font-light">
             {RESUME_DATA.title}
@@ -302,17 +341,11 @@ export default function PortfolioPage() {
       <section className="w-full px-2 md:max-w-4xl md:px-0">
         <p className="text-zinc-600">
           {
-            "Some other things to know about me are that New York City is my favorite place in the world, even if I'm going to live at the beach for a year, that I am a proud California Golden Bear, my main driver in this kind of work is getting to work on problems that include anticipating how users think and behave, and that this is my first swing at a personal website in about 9 years."
+            "Some other things to know about me are that New York City is my favorite place in the world, even if I'm going to live at the beach for "
           }
-        </p>
-        <p className="text-zinc-600 mt-2">
+          <s>a year</s>
           {
-            "P.S. I built this in about a day. Scientifically, if you gave me a week, I could make 5 of these."
-          }
-        </p>
-        <p className="text-zinc-200 mt-2 text-xs">
-          {
-            "I'm kidding I just meant that I can ideate and execute quickly and that days like this stack up."
+            " (okay its going to be like 18 months), that I am a proud California Golden Bear, that I really like figuring out what people will like and creating experiences around it, and that this is my first swing at a personal website in about 9 years."
           }
         </p>
       </section>
@@ -338,7 +371,6 @@ export default function PortfolioPage() {
           ))}
         </div>
       </section>
-      <ChatFooter />
     </main>
   );
 }
