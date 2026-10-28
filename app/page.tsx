@@ -3,7 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Github, Linkedin, Mail, Martini } from "lucide-react";
 import { Tilt_Warp, Palette_Mosaic } from "next/font/google";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { FilmReticleCursor } from "@/components/ui/film-reticle-cursor";
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import Image from "next/image";
@@ -251,7 +251,7 @@ export default function PortfolioPage() {
 
   return (
     <main className="mx-0 max-w-screen md:p-0 flex flex-col items-center">
-      <SmoothCursor />
+      <FilmReticleCursor />
       <section className="flex flex-col w-full items-center text-center space-y-1">
         <div
           className="w-full overflow-hidden flex items-end"
