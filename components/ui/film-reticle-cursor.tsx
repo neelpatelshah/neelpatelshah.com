@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from "react";
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, label, summary, [data-cursor-snap]';
 
 const SIZE = {
-  idle: 22,
-  moving: 26,
-  snap: 44,
+  idle: 18,
+  moving: 20,
+  snap: 28,
 };
 
 const BRACKET = {
@@ -91,11 +91,7 @@ export function FilmReticleCursor() {
         transition: "opacity 120ms ease",
       }}
     >
-      <motion.div
-        style={{ width: "100%", height: "100%", position: "relative" }}
-        animate={{ rotate: isSnapped ? 45 : 0 }}
-        transition={{ type: "spring", stiffness: 220, damping: 20 }}
-      >
+      <div style={{ width: "100%", height: "100%", position: "relative" }}>
         {/* Four L-shaped corner brackets */}
         {[
           { top: 0, left: 0, borderTop: true, borderLeft: true },
@@ -137,7 +133,7 @@ export function FilmReticleCursor() {
           animate={{ opacity: isSnapped ? 0 : 1, scale: isMoving ? 1 : 0.9 }}
           transition={{ duration: 0.15 }}
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
